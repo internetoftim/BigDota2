@@ -1,0 +1,17 @@
+Outline of Steps:
+
+Begin with account_ID
+Extract MATCHES from account_ID - from 'https://api.opendota.com/api/players/' + acct_id + '/matches'
+Make a List of match_ID
+SAVE each match in csv
+Extract PLAYER acct_id from each MATCH
+Save PLAYERS in list of account ID
+
+Iterate:
+
+Begin with account_ID list
+Extract MATCHES from each account_ID - from 'https://api.opendota.com/api/players/' + acct_id + '/matches'
+Make a List of match_ID
+SAVE each match in csv
+Extract PLAYER acct_id from each MATCH
+Save PLAYERS in list of account ID

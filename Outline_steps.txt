@@ -1,9 +1,49 @@
 Outline of Steps:
-
+STEP 1:
 Begin with account_ID
+STEP 2:
 Extract MATCHES from account_ID - from 'https://api.opendota.com/api/players/' + acct_id + '/matches'
 Make a List of match_ID
-SAVE each match in csv
+STEP 3:
+SAVE each match id inTO csv LIST
+
+
+STEP 4:
+LOAD the file list
+-------------
+import pandas as pd
+input_match_list = output_file_name
+match_list = pd.read_csv(input_match_list,header=None,names=['match_id'])
+----------
+
+STEP 5
+Save a match as json file
+
+--------------
+# The part where you do what with the data
+with open(match_id + '.json', mode='w') as output_file:
+    csv_writer = csv.writer(output_file, delimiter=',', quoting=csv.QUOTE_MINIMAL)
+    csv_writer.writerow([json.dumps(test_json)])
+----------------------
+
+        
+STEP 6:
+Loop through all the matches -  Save all json 
+-------------
+output_folder = "output_tim/"
+for i in range(len(match_list)):
+    my_url = 'https://api.opendota.com/api/matches/' + str(match_list.iloc[i].match_id)
+    print(my_url)
+    uClient = uReq(my_url)
+    page_html = uClient.read()
+    soup_out= soup(page_html, "html.parser")
+    test_input = page_html
+    test_json = json.loads(test_input)
+    with open(output_folder + str(match_list.iloc[i].match_id) + '.json', mode='w') as output_file:
+        csv_writer = csv.writer(output_file, delimiter=',', quoting=csv.QUOTE_MINIMAL)
+        csv_writer.writerow([json.dumps(test_json)])    
+--------------
+
 Extract PLAYER acct_id from each MATCH
 Save PLAYERS in list of account ID
 
